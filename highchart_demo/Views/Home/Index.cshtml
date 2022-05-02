@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+
+<div class="jumbotron">
+    <h1>Highchart_demo</h1>
+    <p class="lead">Ejemplo básico, para el manejo de gráficos.</p>
+</div>
+
+<div id="container" style="height: 400px"></div>
+
+<style>
+    .legenditem {
+        text-indent: -9999px;
+    }
+</style>
+
+@section scripts
+{
+   <script>
+       $(function () {
+           var chart = new Highcharts.Chart({
+
+               chart: {
+                   renderTo: 'container'
+               },
+
+               legend: {
+                   useHTML: true,
+                   symbolWidth: 0,
+                   labelFormatter: function () {
+                       return '<span class="legenditem">' + this.name + '<img src="http://icons.iconarchive.com/icons/visualpharm/must-have/256/Check-icon.png" width="15" height="15"></span>';
+                   }
+               },
+
+               xAxis: {
+                   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+               },
+
+               series: [{
+                   data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+               }, {
+                   data: [95.6, 54.4, 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1]
+               }]
+           });
+       });
+    </script>
+}
