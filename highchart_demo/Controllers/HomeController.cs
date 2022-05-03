@@ -20,9 +20,14 @@ namespace highchart_demo.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult LineChartBasic()
         {
-            ViewBag.Message = "Your contact page.";
+             return View();
+        }
+
+        public ActionResult PieChart()
+        {
+            ViewBag.Message = "PieChart.";
 
             return View();
         }
