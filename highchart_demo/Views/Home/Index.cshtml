@@ -15,12 +15,26 @@
     .legenditem {
         text-indent: -9999px;
     }
+
+    .hidden-phone {
+        display: none !important; 
+    }
+
+
 </style>
 
 @section scripts
 {
    <script>
-       $(function () {
+       $(document).ready(function () {
+
+           $('.demoPopover').popover({
+               trigger: 'hover',
+               container: 'body',
+               title: 'Atención',
+               pacement: 'top'
+           });
+
            var chart = new Highcharts.Chart({
 
                chart: {
@@ -31,7 +45,13 @@
                    useHTML: true,
                    symbolWidth: 0,
                    labelFormatter: function () {
-                       return '<span class="legenditem">' + this.name + '<img src="http://icons.iconarchive.com/icons/visualpharm/must-have/256/Check-icon.png" width="15" height="15"></span>';
+                       if (this.name == "Series 2") {
+                           return '<span class="legenditem">' + this.name + '<img src="http://icons.iconarchive.com/icons/visualpharm/must-have/256/Check-icon.png" style="cursor:pointer" width="15" height="15" class="demoPopover" data-content="esto es un mensaje"></span>';
+                       }
+                       else
+                       {
+                           return '<span class="legenditem">' + this.name + '</span>';
+                       }
                    }
                },
 

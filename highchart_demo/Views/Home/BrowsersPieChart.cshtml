@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "BrowsersPieChart";
+}
+
+<h2>BrowsersPieChart</h2>
+
+<head>
+    <script>
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Browser market shares at a specific website, 2010'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+                    percentageDecimals: 1
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000000',
+                            connectorColor: '#000000',
+                            formatter: function () {
+                                return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Browser share',
+                    data: [
+                        ['Firefox', 45.0],
+                        ['IE', 26.8], {
+                            name: 'Chrome',
+                            y: 12.8,
+                            sliced: true,
+                            selected: true
+                        }, ['Safari', 8.5],
+                        ['Opera', 6.2],
+                        ['Others', 0.7]
+                    ]
+                }]
+            }, function (chart) {
+
+                $legend = $('#customLegend');
+
+                $.each(chart.series[0].data, function (j, data) {
+
+                    $legend.append('<div class="item"><div class="symbol" style="background-color:' + data.color + '"></div><div class="serieName" id="">' + data.name + '</div></div>');
+
+                });
+
+                $('#customLegend .item').click(function () {
+                    var inx = $(this).index(),
+                        point = chart.series[0].data[inx];
+
+                    if (point.visible)
+                        point.setVisible(false);
+                    else
+                        point.setVisible(true);
+                });
+
+            });
+        });
+    </script>
+</head>
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div id="customLegend"></div>
+
+<style>
+    .symbol {
+        width: 20px;
+        height: 20px;
+        margin-right: 20px;
+        float: left;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+    .serieName {
+        float: left;
+        cursor: pointer;
+    }
+
+    .item {
+        height: 40px;
+        clear: both;
+    }
+</style>
+
+

@@ -163,6 +163,7 @@
     <Content Include="Views\Home\PieChart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\LineChartBasic.cshtml" />
+    <Content Include="Views\Home\BrowsersPieChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

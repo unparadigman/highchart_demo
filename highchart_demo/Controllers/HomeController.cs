@@ -24,10 +24,17 @@ namespace highchart_demo.Controllers
         {
              return View();
         }
-
+               
         public ActionResult PieChart()
         {
             ViewBag.Message = "PieChart.";
+
+            return View();
+        }
+
+        public ActionResult BrowsersPieChart()
+        {
+            ViewBag.Message = "BrowsersPieChart.";
 
             return View();
         }
